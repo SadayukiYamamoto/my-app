@@ -1,0 +1,37 @@
+.admin-panel {
+    padding: 2rem;
+    font-family: sans-serif;
+  }
+  
+  .form-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-bottom: 2rem;
+    max-width: 400px;
+  }
+  
+  .form-container input,
+  .form-container select,
+  .form-container button {
+    padding: 0.5rem;
+    font-size: 1rem;
+  }
+  
+  .video-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .video-table th,
+  .video-table td {
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    text-align: left;
+  }
+  .spinner {
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    color: #333;
+  }
+  

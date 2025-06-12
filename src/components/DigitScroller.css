@@ -1,0 +1,20 @@
+.digit-container {
+    height: 1em;
+    overflow: hidden;
+    display: inline-block;
+    width: 0.6em;
+  }
+  
+  .digit-scroll {
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .digit {
+    height: 1em;
+    line-height: 1em;
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+  }
+  

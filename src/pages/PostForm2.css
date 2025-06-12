@@ -1,0 +1,276 @@
+/* 全体背景 */
+.postform-container {
+    background-color: white;
+    min-height: 100vh;
+    padding: 1rem;
+    font-family: 'Arial', sans-serif;
+    position: relative;
+  }
+  
+  .image-preview-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); 
+    gap: 2px;
+    margin-top: 1rem;
+    margin-bottom: 0rem;
+  }
+  
+  .image-wrapper {
+    position: relative;
+    border-radius: 10px;
+    overflow: hidden;
+    aspect-ratio: 1 / 1; /* 正方形で統一 */
+  }
+  
+  .image-wrapper img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+    border-radius: 10px;
+  }
+  
+  .image-remove-button {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    background-color: rgba(0,0,0,0.0.8);
+    border: none;
+    color: #fff;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  /* ヘッダーエリア */
+  .postform-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+  
+  /* 閉じるボタン */
+  .close-button {
+    font-size: 1.5rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #333;
+  }
+  
+  /* トップ操作ボタン */
+  .postform-top-controls {
+    display: flex;
+    gap: 0.5rem;
+    flex: 1;
+    justify-content: flex-start;
+  }
+  
+  /* カテゴリとタイトルの選択ボタン */
+  .category-button,
+  .title-button {
+    display: flex;
+    align-items: center;
+    padding: 0.4rem 0.8rem;
+    border-radius: 12px;
+    background-color: #efefef;
+    border: none;
+    cursor: pointer;
+    font-size: 0.7rem;
+    max-width: 150px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  .icon-chevron {
+    margin-left: 4px;
+    font-size: 0.7rem;
+  }
+  
+  .submit-button {
+    background-color: #709dfd;
+    color: white;
+    border: none;
+    padding: 0.4rem 0.8rem;
+    border-radius: 12px;
+    font-size: 0.9rem;
+    cursor: pointer;
+  }
+  
+  /* ユーザー表示 */
+  .postform-user {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.8rem;
+  }
+  
+  .user-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 0.6rem;
+  }
+  
+  .user-info {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .user-name {
+    font-weight: bold;
+    font-size: 0.95rem;
+  }
+  
+  .user-id {
+    font-size: 0.7rem;
+    color: #777;
+  }
+  
+  /* 投稿本文 */
+  .postform-textarea {
+    width: 100%;
+    border: none;
+    resize: none;
+    font-size: 1rem;
+    min-height: 120px;
+    background-color: transparent;
+    outline: none;
+    padding: 0.5rem 0;
+  }
+  
+  /* メディア */
+  .media-upload {
+    margin-top: 0.5rem;
+  }
+  
+  .media-upload label {
+    cursor: pointer;
+    color: #666;
+  }
+  
+  .image-preview {
+    position: relative;
+    margin-top: 0.5rem;
+  }
+  
+  .image-preview img {
+    width: 100%;
+    border-radius: 8px;
+  }
+  
+  .image-preview button {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background: rgba(0, 0, 0, 0.5);
+    border: none;
+    color: white;
+    font-size: 1rem;
+    border-radius: 50%;
+    cursor: pointer;
+    width: 24px;
+    height: 24px;
+  }
+  
+  /* モーダル背景 */
+  .modal-overlay {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 9;
+  }
+  
+  /* カテゴリモーダル */
+  .category-modal {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: white;
+    padding: 1rem;
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
+    z-index: 10;
+  }
+  
+  .category-title {
+    font-weight: bold;
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .category-option {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.4rem 0;
+    border-bottom: 1px solid #f0f0f0;
+  }
+  
+  /* タイトル入力モーダル */
+  .title-modal {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: white;
+    padding: 1rem;
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+  
+  .title-input-field {
+    padding: 0.6rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 12px;
+    outline: none;
+  }
+  
+  .title-close-button {
+    background-color: #2563eb;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    font-weight: bold;
+  }
+
+
+.category-close-button:hover {
+    background: #e0e0e0;
+  }
+
+  /* モーダル内のバツボタン（×） */
+.category-modal .category-close-button {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: #f0f0f0;
+    border: none;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    font-size: 18px;
+    color: #333;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+  
+  .category-modal .title-close-button:hover {
+    background: rgba(0, 0, 0, 0.1);
+  }
+  
+  

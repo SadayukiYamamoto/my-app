@@ -1,0 +1,80 @@
+/* src/components/Sidebar.css */
+
+/* ハンバーガーメニューアイコンのスタイル修正 */
+.menu-icon {
+    position: absolute;       /* サイドバー内に配置 */
+    top: 15px;                /* 上からの位置を調整 */
+    left: 15px;               /* 左からの位置を調整 */
+    font-size: 24px;          /* アイコンのサイズ */
+    color: #fff;              /* アイコンの色を白に */
+    cursor: pointer;          /* カーソルをポインターに */
+    z-index: 1001;            /* サイドバーより前面だが、コンテンツよりは後ろ */
+}
+
+/* サイドバーのスタイル */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 250px;
+    height: 100%;
+    background-color: #333;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    z-index: 1000;           /* コンテンツより前面に、アイコンより後ろに */
+    overflow-y: auto;
+    padding-top: 50px;       /* 上にスペースを作り、アイコンとメニューがかぶらないように */
+}
+
+/* サイドバーが開いたとき */
+.sidebar.open {
+    transform: translateX(0);
+}
+
+/* サイドバーのリストのスタイル */
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar ul li {
+    border-bottom: 1px solid #444;
+}
+
+.sidebar ul li a {
+    display: block;
+    padding: 10px 20px;
+    color: #fff;
+    text-decoration: none;
+    transition: background-color 0.2s;
+}
+
+.sidebar ul li a:hover {
+    background-color: #575757;
+}
+
+/* サブメニューのスタイル */
+.submenu {
+    display: none;
+    padding-left: 20px;
+    background-color: #444;
+    transition: max-height 0.3s ease-out;  /* アニメーション */
+    max-height: 0;  /* 初期は閉じている */
+    overflow: hidden;  /* スクロールバーを隠す */
+}
+
+.submenu.open {
+    display: block;
+    max-height: 500px;  /* 開いたときの高さ、必要なら調整 */
+}
+
+/* サブメニューのリンク */
+.submenu li a {
+    padding: 5px 20px;
+    color: #ddd;
+}
+
+.submenu li a:hover {
+    background-color: #575757;
+}

@@ -1,0 +1,60 @@
+.report-page {
+    padding: 20px;
+    text-align: center;
+}
+
+/* 🆕 グリッドで3列に並べる */
+.report-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));  /* 🆕 最小150pxで自動調整 */
+    gap: 20px;  /* 要素間のスペース */
+    justify-items: center;  /* 中央揃え */
+    margin-top: 20px;
+}
+
+.report-item {
+    background-color: #00a2ff;  /* カードの背景色 */
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s;
+    max-width: 250px;  /* 🆕 カードの最大幅を調整 */
+}
+
+.report-item:hover {
+    transform: scale(1.05);
+}
+
+.report-item img {
+    width: 100%;  /* カードにフィットさせる */
+    max-width: 150px;  /* 🆕 スマホ用に小さめ */
+    border-radius: 10px;
+}
+
+.report-item p {
+    margin-top: 5px;  /* 🆕 余白を少なめに */
+    font-weight: bold;
+    text-align: center;
+    font-size: 14px;  /* 🆕 文字サイズを小さめに */
+}
+
+/* 🆕 スマホ対応: 1列表示に */
+@media (max-width: 768px) {
+    .report-grid {
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));  /* 🆕 最小120pxで自動調整 */
+        gap: 10px;  /* 🆕 要素間のスペースを狭く */
+    }
+
+    .report-item {
+        max-width: 200px;  /* 🆕 スマホ用にカード幅を小さく */
+    }
+
+    .report-item img {
+        max-width: 120px;  /* 🆕 画像の幅を小さく */
+    }
+
+    .report-item p {
+        font-size: 12px;  /* 🆕 テキストサイズを小さく */
+    }
+}
+

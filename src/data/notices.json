@@ -1,0 +1,31 @@
+[
+    {
+      "type": "new",
+      "typeLabel": "フォーム回答",
+      "date": "2025/06/01 15:00",
+      "title": "360°評価の回答のお願い",
+      "imageUrl": "/images/notice1.png",
+      "body": "お疲れ様です！日々の稼働ありがとうございます！\n今月もAwardの項目にもなっている360°評価を実施いたします。\n...\nhttps://docs.google.com/forms/d/e/xxx",
+      "buttonLabel": "回答",
+      "buttonUrl": "https://docs.google.com/forms/d/e/1FAIpQLSdt9Mgi04VDkK-wsIUv6Ssp44g1uFmeQt9I06H5d22fc9LvKQ/viewform"
+    },
+
+    {
+      "type": "new",
+      "typeLabel": "フォーム回答",
+      "date": "2025/05/30 15:00",
+      "title": "意識調査回答のお願い",
+      "imageUrl": "/images/notice2.png",
+      "body": "こんにちは！今月の意識調査のご協力をお願いします。\n5分ほどで完了します。\n..."
+    },
+
+    {
+      "type": "event",
+      "typeLabel": "アップデート",
+      "date": "2025/05/29 15:00",
+      "title": "アップデートのおしらせ",
+      "imageUrl": "/images/notice3.png",
+      "body": "いつもご利用ありがとうございます。\n本日、バージョン1.2.3がリリースされました。\n..."
+    }
+  ]
+  

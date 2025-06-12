@@ -1,0 +1,575 @@
+.pixtube-container {
+    height: 100vh;
+    overflow-y: scroll;
+    scroll-snap-type: y mandatory;
+    scroll-behavior: smooth;
+    display: flex;               /* 👈 追加 */
+    flex-direction: column;      /* 👈 追加 */
+  }
+  
+  .pixtube-video-wrapper {
+    height: 100vh;
+    flex-shrink: 0;
+    scroll-snap-align: start;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;  /* 余白をなくす */
+    position: relative;
+    overflow: hidden; /* ←★追加：これが重なりを防ぐ！ */
+    object-fit: contain; /* ← coverだと拡大されすぎる */
+  }
+  
+  
+  .pixtube-video {
+    width: auto;
+    height: 100%;
+    max-height: 100vh;
+    max-width: 100vw;
+    object-fit: contain;
+    display: block;
+  }
+  
+  .pixtube-actions {
+    z-index: 15; /* 上に出す */
+    position: absolute;
+    right: 12px;
+    bottom: 250px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    color: white;
+    align-items: center;
+    font-size: 14px;
+    background: rgba(0,0,0,0.1); /* ← 必要なら背景も薄く入れると視認性UP */
+    padding: 8px;
+    border-radius: 12px;
+  }
+  
+  
+  .action-button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+  }
+  
+  .pixtube-profile {
+    position: absolute;
+    bottom: 80px;
+    left: 16px;
+    color: white;
+  }
+  
+  .pixtube-author {
+    font-weight: bold;
+    font-size: 14px;
+  }
+  
+  .pixtube-title {
+    font-size: 13px;
+    margin-top: 4px;
+  }
+  
+  .like-button svg {
+    transition: color 0.3s;
+    color: white;
+  }
+  
+  .like-button.liked svg {
+    color: #ff4d6d;
+  }
+
+  .comment-modal {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 60%;
+    background: #111;
+    color: white;
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    z-index: 20;
+    padding: 12px 16px;
+    animation: slideUp 0.3s ease-out;
+  }
+  
+  @keyframes slideUp {
+    from { transform: translateY(100%); }
+    to { transform: translateY(0); }
+  }
+  
+  .comment-header {
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+  
+  .comment-input-section {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+  
+  .comment-profile-image {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  
+  .comment-input {
+    flex-grow: 1;
+    padding: 6px 10px;
+    border-radius: 20px;
+    border: none;
+    font-size: 14px;
+  }
+  
+  .comment-send-button {
+    background: #1da1f2;
+    color: white;
+    border: none;
+    padding: 6px 10px;
+    border-radius: 50%;
+    font-size: 16px;
+    cursor: pointer;
+    align-items: flex-start;
+  }
+  
+  .comment-list {
+    flex-grow: 1;
+    overflow-y: auto;
+  }
+  
+  .comment-item {
+    padding: 6px 0;
+    font-size: 14px;
+    border-bottom: 1px solid #333;
+  }
+  
+  .video-small {
+    height: 60%;
+    transition: height 0.3s ease;
+  }
+
+  .wrapper-shifted .pixtube-video {
+    transform: scale(0.4);
+    transition: transform 0.3s ease;
+    transform-origin: top center;
+  }
+
+  .video-overlay-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 64px;
+    color: white;
+    opacity: 0;
+    pointer-events: none;
+  }
+  
+  .video-overlay-icon.show-icon {
+    animation: fadeCenterIcon 1s ease-out;
+  }
+  
+  @keyframes fadeCenterIcon {
+    0% {
+      opacity: 0;
+      transform: translate(-50%, -50%) scale(0.6);
+    }
+    20% {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1.0);
+    }
+    80% {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1.0);
+    }
+    100% {
+      opacity: 0;
+      transform: translate(-50%, -50%) scale(1.2);
+    }
+  }
+
+  .pixtube-home {
+    padding: 1rem;
+  }
+  
+  .home-video-card {
+    display: flex;
+    margin-bottom: 2rem;
+    cursor: pointer;
+  }
+  
+  .thumbnail-wrapper {
+    position: relative;
+    width: 160px;
+    height: 90px;
+    margin-right: 12px;
+  }
+  
+  .thumbnail {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+  
+  .duration {
+    position: absolute;
+    bottom: 4px;
+    right: 6px;
+    background: rgba(0,0,0,0.7);
+    color: #fff;
+    padding: 2px 6px;
+    font-size: 12px;
+    border-radius: 4px;
+  }
+  
+  .video-info {
+    flex: 1;
+  }
+  
+  .video-title {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 4px;
+  }
+  
+  .video-meta {
+    font-size: 13px;
+    color: #888;
+  }
+
+  /* カテゴリバー */
+.category-bar {
+  display: flex;
+  overflow-x: auto;
+  gap: 10px;
+  padding: 8px 16px;
+  background: #ffffff;
+  border-bottom: 1px solid #ffffff;
+}
+
+.category-button {
+  padding: 6px 12px;
+  background: #333;
+  color: #ccc;
+  border: none;
+  border-radius: 10px;
+  font-size: 8px;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.category-button:hover {
+  background: #444;
+}
+
+.category-button.active {
+  background: #1da1f2;
+  color: white;
+  font-weight: bold;
+}
+
+/* 動画カード（PixTubeHome内） */
+.pixtube-home {
+  padding: 1rem;
+  background: #87cefa; /* 青っぽい背景とマッチ */
+  min-height: 100vh;
+}
+
+.home-video-card {
+  display: flex;
+  margin-bottom: 1rem;
+  cursor: pointer;
+  background: white;
+  border-radius: 3px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.thumbnail-wrapper {
+  position: relative;
+  width: 160px;
+  height: 90px;
+  flex-shrink: 0;
+}
+
+.thumbnail {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.duration {
+  position: absolute;
+  bottom: 4px;
+  right: 6px;
+  background: rgba(0,0,0,0.7);
+  color: #fff;
+  padding: 2px 6px;
+  font-size: 12px;
+  border-radius: 4px;
+}
+
+.video-info {
+  padding: 8px 12px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.video-title {
+  font-size: 15px;
+  font-weight: bold;
+  margin-bottom: 4px;
+}
+
+.video-meta {
+  font-size: 13px;
+  color: #777;
+}
+
+.shorts-section {
+  padding: 1rem 1rem 0.5rem;
+}
+
+.shorts-title {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 8px;
+  color: #fff;
+}
+
+.shorts-scroll {
+  display: flex;
+  overflow-x: auto;
+  gap: 12px;
+  padding-bottom: 1rem;
+  scrollbar-width: none; /* Firefox */
+}
+
+.shorts-scroll::-webkit-scrollbar {
+  display: none; /* Chrome, Safari */
+}
+
+.shorts-card {
+  min-width: 120px;
+  flex-shrink: 0;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.shorts-thumbnail {
+  width: 120px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+
+.shorts-title-text {
+  font-size: 10px;
+  margin-top: 6px;
+  color: #222222;
+  text-align: center;
+  width: 120px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.pixtube-container {
+  height: 100vh;
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+}
+
+.no-more-videos {
+  height: 100vh;
+  background: #000;
+  color: #fff;
+  font-size: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  scroll-snap-align: start;
+}
+
+.end-screen {
+  background-color: black;
+  color: white;
+  padding: 40px;
+  text-align: center;
+  font-size: 18px;
+}
+
+.end-screen button {
+  margin-top: 16px;
+  padding: 10px 20px;
+  font-size: 16px;
+  background: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.end-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.9);
+  z-index: 999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.end-message {
+  color: white;
+  font-size: 18px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.end-button {
+  background-color: #ffffff;
+  color: #333;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.back-button {
+  position: absolute;
+  top: 60px;
+  left: 12px;
+  background-color: rgba(255, 255, 255, 1);
+  color: #eee;
+  padding: 8px;
+  border-radius: 50%;
+  z-index: 80;
+  font-size: 40px;
+  cursor: pointer;
+}
+
+.shorts-card.coming-soon {
+  background-color: #f0f0f0;
+  border: 1px dashed #ccc;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.shorts-card .dummy {
+  width: 100%;
+  height: 100px;
+  background-color: #e0e0e0;
+  border-radius: 8px;
+}
+
+.pixtube-video-wrapper.dummy {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 360px;
+}
+
+.dummy-video-card {
+  width: 90%;
+  max-width: 320px;
+  height: 100%;
+  background-color: #f4f4f4;
+  border: 2px dashed #bbb;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.dummy-thumbnail {
+  width: 80%;
+  height: 200px;
+  background-color: #ddd;
+  border-radius: 12px;
+  margin-bottom: 16px;
+}
+
+.dummy-text {
+  color: #999;
+  font-size: 1rem;
+}
+.shorts-card.coming-soon {
+  background-color: #f9f9f9;
+  border: 2px dashed #ccc;
+  color: #999;
+  pointer-events: none;
+}
+
+.shorts-thumbnail.dummy {
+  width: 100%;
+  height: 100px;
+  background-color: #ddd;
+  border-radius: 8px;
+}
+
+.home-video-card.dummy {
+  border: 2px dashed #ccc;
+  background-color: #f3f3f3;
+  pointer-events: none;
+}
+
+.thumbnail.dummy-thumbnail {
+  width: 100%;
+  height: 90px;
+  background-color: #ddd;
+  border-radius: 8px;
+}
+
+.video-loading-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
+}
+
+.spinner {
+  width: 48px;
+  height: 48px;
+  border: 5px solid rgba(255, 255, 255, 0.2);
+  border-top: 5px solid white;
+  border-radius: 50%;
+  animation: spin 0.9s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

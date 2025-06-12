@@ -1,0 +1,37 @@
+.badge-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 90px;
+    margin: 8px;
+  }
+  
+  .badge-base {
+    position: relative;
+    width: 90px;
+    height: 90px;
+  }
+  
+  .badge-stand {
+    width: 100%;
+    height: 170%;
+    object-fit: contain;
+  }
+  
+  .badge-icon {
+    position: absolute;
+    top: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+    z-index: 2;
+  }
+  
+  .badge-label {
+    font-size: 10px;
+    margin-top: 8px;
+    text-align: center;
+  }
+  

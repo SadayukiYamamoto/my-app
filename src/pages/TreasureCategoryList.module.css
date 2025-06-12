@@ -1,0 +1,94 @@
+.container {
+    background: linear-gradient(to bottom, #bce5ff 0%, #e4f1fd 30%, #ffffff 100%);
+    padding: 2rem 1rem;
+    min-height: 100vh;
+    font-family: 'Helvetica Neue', sans-serif;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+  .title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+    color: #333;
+    text-align: center;
+  }
+  
+  .postCard {
+    width: 100%; /* 横いっぱい */
+    max-width: 600px;
+    margin: 0 auto 1.2rem auto; /* ← 中央揃え */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #f8fafc;
+    border-radius: 8px;
+    padding: 1rem 0.5rem;
+    margin-bottom: 0.7rem;
+    box-shadow:
+      inset 4px 4px 8px rgba(0, 0, 0, 0.04),
+      inset -4px -4px 8px rgba(255, 255, 255, 0.8),
+      0 4px 12px rgba(0, 0, 0, 0.06);
+    cursor: pointer;
+    transition: transform 0.2s ease;
+  }
+  
+  .postCard:hover {
+    transform: scale(1.02);
+  }
+  
+  .cardLeft {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex: 1;
+  }
+  
+  .profileIcon {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    object-fit: cover;
+    background: #fff;
+    padding: 1px;
+  }
+  
+  .textInfo {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .titleText {
+    font-weight: bold;
+    font-size: 1rem;
+    margin-bottom: 0.2rem;
+  }
+  
+  .subText {
+    font-size: 0.8rem;
+    color: #666;
+  }
+  
+  /* 👇 新しい位置にまとめるリアクションカウント */
+  .countBadge {
+    background: linear-gradient(to bottom right, #f0f0f5, #e2e8f0);
+    color: #444;
+    padding: 0.4rem 0.8rem;
+    border-radius: 14px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    min-width: 30px;
+    text-align: center;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    align-items: center;
+  }
+
+  .ulReset {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }

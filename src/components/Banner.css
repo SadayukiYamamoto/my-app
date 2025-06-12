@@ -1,0 +1,20 @@
+/* src/components/Banner.css */
+.appBanner {
+  max-width: 100%;
+  margin: auto;
+  text-align: center;
+  padding: 10px;
+  background-color: #111827;  /* ダークモード風 */
+}
+
+.appBanner-img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease;
+}
+
+.appBanner-img:hover {
+  transform: scale(1.05);
+}

@@ -1,0 +1,48 @@
+/* src/components/InformationBanner.css */
+.information-banner {
+    background-color: #ffc400;
+    padding: 8px 16px;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .information-banner-link {
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    align-items: center;
+  }
+  
+  .banner-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+  
+  .banner-text p {
+    margin: 0;
+    font-weight: bold;
+    color: #ffffff;
+    font-size: 10px; /* 👈 ここをお好みのサイズに変更 */
+  }
+  
+  .banner-avatar {
+    display: flex;
+    align-items: center;
+  }
+  
+  .banner-avatar img {
+    border-radius: 50%;
+    margin-right: 5px;
+  }
+  
+  .banner-date {
+    font-size: 12px;
+    color: #000000;
+  }
+  
+  .banner-hidden {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+  }

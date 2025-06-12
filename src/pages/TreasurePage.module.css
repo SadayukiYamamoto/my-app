@@ -1,0 +1,95 @@
+/* TreasurePage.module.css */
+.container {
+  background: linear-gradient(to bottom, #e4f1fd 0%, #ffffff 60%);
+  padding: 2rem 1rem;
+  min-height: 100vh;
+  font-family: 'Helvetica Neue', sans-serif;
+}
+
+.title {
+  font-size: 1.8rem;
+  font-weight: bold;
+  text-align: center;
+  color: #333;
+  margin-bottom: 2rem;
+}
+
+.cardList {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #f8fafc;
+  border-radius: 20px;
+  padding: 1rem 1.2rem;
+  box-shadow:
+    inset 4px 4px 8px rgba(0, 0, 0, 0.04),
+    inset -4px -4px 8px rgba(255, 255, 255, 0.8),
+    0 4px 12px rgba(0, 0, 0, 0.06); /* 外側の影も継続 */
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.card:hover {
+  transform: scale(1.02);
+}
+
+.cardLeft {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 12px;
+  object-fit: cover;
+  background: #fff;
+  padding: 0.3rem;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.label {
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: #444;
+}
+
+.count {
+  background: linear-gradient(to bottom right, #f0f0f5, #e2e8f0);
+  color: #444;
+  padding: 0.4rem 0.8rem;
+  border-radius: 14px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  min-width: 72px;
+  text-align: center;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+/* Optional: 下部ボタン風デザイン */
+.bottomButton {
+  width: 64px;
+  height: 64px;
+  background: #ffffff;
+  border-radius: 50%;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  margin: 2rem auto 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  color: #999;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.bottomButton:hover {
+  transform: scale(1.1);
+}

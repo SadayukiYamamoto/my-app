@@ -1,0 +1,90 @@
+/* src/components/TopBar.css */
+.top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fff;
+    padding: 5px 15px;  /* ✅ 左右に余白を追加してアイコンが重ならないように */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    position: relative;  /* ✅ スクロール時に固定したいなら position: fixed; を使う */
+    z-index: 10;  /* ✅ 重なり順を確保 */
+  }
+  
+  .top-bar-left,
+  .top-bar-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;  /* ✅ アイコン同士の隙間を広げる */
+  }
+  
+  .top-bar-icon {
+    font-size: 24px;
+    cursor: pointer;
+    padding: 5px;  /* ✅ クリックしやすいように余白を追加 */
+  }
+  
+  .hamburger-menu {
+    font-size: 24px;
+    cursor: pointer;
+    margin-right: 10px;  /* ✅ ハンバーガーメニューとホームアイコンの隙間を確保 */
+  }
+
+  /* プロフィール画像のスタイル */
+.top-bar-profile-image {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  cursor: pointer;
+  transition: opacity 0.3s;
+}
+
+.top-bar-profile-image:hover {
+  opacity: 0.8;
+}
+
+  
+  /* スマホ対応: アイコンの間隔を広げる */
+  @media (max-width: 768px) {
+    .top-bar-left,
+    .top-bar-right {
+      gap: 15px;  /* ✅ スマホではさらにアイコンの隙間を広げる */
+    }
+  }
+  
+  .relative {
+    position: relative;
+  }
+  .absolute {
+    position: absolute;
+  }
+  
+  .notification-badge {
+    position: absolute;
+    top: -6px;
+    right: -6px;
+    background-color: rgb(67, 145, 255);
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 2px 6px;
+    border-radius: 9999px;
+    min-width: 5px;
+    text-align: center;
+    box-shadow: 0 0 0 2px white;
+    line-height: 1;
+  }
+  
+  .topbar-hidden {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    transform: translateY(-100%);
+  }
+  
+  .top-bar {
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    background-color: rgba(255, 255, 255, 0.9); /* 半透明にしたい場合 */
+    backdrop-filter: blur(6px); /* iOS風にしたい場合 */
+  }
+  

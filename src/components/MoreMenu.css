@@ -1,0 +1,54 @@
+/* src/components/MoreMenu.css */
+.more-menu-wrapper {
+  position: absolute;  /* ← 親要素に relative が必要 */
+  top: 8px;
+  right: 10px;
+  z-index: 10;
+}
+
+.more-menu-button {
+  background: none;
+  border: none;
+  font-size: 10px;
+  cursor: pointer;
+  padding: 4px;
+  color: #888;
+  z-index: 10;
+}
+
+.more-menu-dropdown {
+  position: absolute;
+  top: 24px;
+  right: 0;
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  z-index: 99;
+  padding: 4px 0; /* ←上下だけにpadding */
+  width: 160px; /* ← 幅を固定して自然に */
+}
+
+.more-menu-dropdown button {
+  display: block;
+  width: 100%;
+  padding: 10px 12px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  text-align: left;
+  font-size: 14px;
+  color: #333;
+  white-space: nowrap; /* ← 改行防止！ */
+}
+
+
+.more-menu-dropdown button:hover {
+  background-color: #f2f2f2;
+}
+
+.moremenu-hidden {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}

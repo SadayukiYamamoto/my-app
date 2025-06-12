@@ -1,0 +1,40 @@
+/* src/components/BottomBar.css */
+.bottom-bar {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #FFFFFF;  /* 🔄 白色に変更！ */
+    padding: 10px 0;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .bottom-bar-icon {
+    color: #1f2937;  /* 文字はダークグレーで見やすく */
+    font-size: 24px;
+    cursor: pointer;
+    transition: color 0.3s;
+  }
+  
+  .bottom-bar-icon:hover {
+    color: #3b82f6;
+  }
+  
+  /* src/components/BottomBar.css */
+.bottom-link {
+    text-decoration: none;
+    color: inherit;  /* アイコンの色を引き継ぐ */
+  }
+  
+  .bottom-link:hover {
+    color: #FFA500;  /* ホバー時に色を変えたい場合 */
+  }
+  
+  .bottombar-hidden {
+    transform: translateY(100%);
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s ease;
+  }

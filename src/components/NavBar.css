@@ -1,0 +1,62 @@
+/* src/components/NavBar.css */
+.navbar {
+    background-color: #ffffff;
+    padding: 5px 20px;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    overflow-x: auto;  /* 横スクロール対応 */
+    white-space: nowrap;  /* 改行させない */
+  }
+  
+  .navbar-links {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .navbar-links li a {
+    color: #3f3f3f;
+    text-decoration: none;
+    padding: 5px 10px;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  
+  .navbar-links li a:hover {
+    background-color: #3b82f6;
+    color: #fff;
+    border-radius: 5px;
+  }
+
+  /* src/components/NavBar.css */
+.navbar-link {
+    text-decoration: none;
+    color: #3f3f3f;  /* 文字色を継承 */
+    padding: 5px 10px;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  
+  .navbar-link:hover {
+    background-color: #3b82f6;
+    color: #fff;
+    border-radius: 5px;
+  }
+  
+  
+  /* スマホ対応: 横並びでスクロール可能に */
+  @media (max-width: 768px) {
+    .navbar-links {
+      display: flex;
+      justify-content: flex-start;
+      overflow-x: auto;  /* 横スクロール可能に */
+      white-space: nowrap;  /* 改行させない */
+      padding: 5px 0;
+    }
+  
+    .navbar-links li {
+      flex-shrink: 0;  /* スクロール時に縮まないように */
+    }
+  }
+  

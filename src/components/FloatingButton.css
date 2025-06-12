@@ -1,0 +1,35 @@
+/* src/components/FloatingButton.css */
+.floating-button {
+    position: fixed;
+    bottom: 80px;         /* 下のバーより少し上 */
+    right: 20px;          /* 右端からの位置 */
+    background-color: #f59e0b; /* オレンジ系の色 */
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+  }
+  
+  .floating-button:hover {
+    background-color: #f97316; /* 少し濃いオレンジ */
+    transform: scale(1.1);
+  }
+  
+  .button-icon {
+    font-size: 24px;
+  }
+  
+  .floating-button-hidden {
+    opacity: 0;
+    transform: translateY(100%);
+    pointer-events: none;
+    transition: all 0.3s ease;
+  }
+  
