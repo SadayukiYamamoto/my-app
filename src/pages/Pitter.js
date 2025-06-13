@@ -367,26 +367,6 @@ const [comments, setComments] = useState([]);
     <div className={`pitter-header-wrapper ${scrollDirection === 'down' ? 'banner-hidden' : ''}`}>
   <img src="/pixtter-banner.png" alt="Pitter Banner" className="pitter-header-image" />
 </div>
-      <aside className="pittersidebar">
-        {/* ← sidebar 内はそのままでOK */}
-        <h3>カテゴリ</h3>
-
-        <ul>
-          <li className={!filteredCategory ? 'active' : ''} onClick={() => setFilteredCategory(null)}>すべて</li>
-          {CATEGORIES.map(cat => (
-            <li key={cat} className={filteredCategory === cat ? 'active' : ''} onClick={() => setFilteredCategory(cat)}>{cat}</li>
-          ))}
-        </ul>
-        <div className="pittertagu">
-          <h3>人気タグ</h3>
-          <ul>
-            <li className={!filteredTag ? 'active' : ''} onClick={() => setFilteredTag(null)}>すべて</li>
-            {Array.from(new Set(posts.flatMap(post => post.tags || []))).map(tag => (
-              <li key={tag} className={filteredTag === tag ? 'active' : ''} onClick={() => setFilteredTag(tag)}>{tag}</li>
-            ))}
-          </ul>
-        </div>
-      </aside>
       <main className="pitter-main">
         {filteredPosts.length === 0 ? (
           <p>投稿がありません。</p>

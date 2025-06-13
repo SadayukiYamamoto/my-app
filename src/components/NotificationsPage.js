@@ -1,3 +1,4 @@
+//NotificationsPage
 import React, { useEffect, useState } from 'react';
 import {
   collection,
@@ -63,6 +64,7 @@ const NotificationsPage = () => {
         toUserId: currentUser.uid,
         timestamp: serverTimestamp(),
         isRead: false,
+        app: 'treasure' // ← ここ追加で切り替え確認も可能
       });
       alert('✅ テスト通知を送信しました！');
     } catch (err) {
@@ -79,7 +81,12 @@ const NotificationsPage = () => {
         console.error('通知の既読更新エラー:', err);
       }
     }
-    navigate(`/post/${notif.postId}`);
+  
+    if (notif.app === 'treasure') {
+      navigate(`/treasure/未分類/${notif.postId}`); // ※未分類の部分は必要に応じてnotif.categoryにするのが理想
+    } else {
+      navigate(`/post/${notif.postId}`);
+    }
   };
 
   return (

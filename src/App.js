@@ -35,6 +35,9 @@ import TreasurePostDetail from './pages/TreasurePostDetail';
 import AdminDashboard from './admin/AdminDashboard';
 import AdminPixTubePanel from "./admin/AdminPixTubePanel";
 import PixTubeFeed from "./pages/PixTubeFeed";
+import MessageListPage from "./pages/MessageListPage"; // ← 追加
+import MessageThreadPage from "./pages/MessageThreadPage"; // ← 追加
+import UserSearchPage from './pages/UserSearchPage'; // ← 追加
 
 const theme = createTheme();
 
@@ -188,6 +191,9 @@ function AppRoutes({ user, profile, showBottomBar, setShowBottomBar }) {
         <Route path="/admin" element={<AdminDashboard />} />
         <Route path="/admin/pixtube" element={<AdminPixTubePanel />} />
         <Route path="/shorts" element={<PixTubeFeed profile={profile} />} />
+        <Route path="/messages" element={<MessageListPage />} /> {/* ✅ これを追加 */}
+        <Route path="/messages/:threadId" element={<MessageThreadPage />} />
+        <Route path="/search-users" element={<UserSearchPage />} />
 
       </Routes>
       {!isNoFloatingButton && (

@@ -129,6 +129,35 @@ const [userPoint, setUserPoint] = useState(0);
   
     return () => unsubscribe();
   }, [userId]);
+
+  const refreshReactions = async (postId) => {
+    const [reactionSnap, commentSnap] = await Promise.all([
+      getDocs(collection(db, "posts", postId, "reactions")),
+      getDocs(collection(db, "posts", postId, "comments")),
+    ]);
+  
+    const counts = {}, userReactions = {};
+    reactionSnap.forEach(docSnap => {
+      const data = docSnap.data();
+      const userId = docSnap.id;
+      for (const type in data) {
+        if (data[type]) {
+          counts[type] = (counts[type] || 0) + 1;
+          if (user && userId === user.uid) {
+            userReactions[type] = true;
+          }
+        }
+      }
+    });
+  
+    counts.comment = commentSnap.size;
+  
+    setReactionData(prev => ({
+      ...prev,
+      [postId]: { counts, userReactions }
+    }));
+  };
+  
   
   const fetchData = async (uid) => {
     try {
@@ -146,16 +175,33 @@ setProfile(profileData);
 setUserPoint(profileData.point || 0); // ←ここを追加
   
       // 🔽 投稿取得
-      const postsSnap = await getDocs(query(collection(db, "posts"), where("userId", "==", uid)));
+      const postsSnap = await getDocs(query(
+        collection(db, "posts"),
+        where("userId", "==", uid)
+      ));
       console.log("✅ 投稿数:", postsSnap.docs.length);
       const postData = await Promise.all(postsSnap.docs.map(async docSnap => {
         const data = docSnap.data();
-        const userRef = doc(db, "users", data.userId);
-        const userSnap = await getDoc(userRef);
+        const commentSnap = await getDocs(collection(db, "posts", docSnap.id, "comments"));
+        const commentCount = commentSnap.size;
+      
+        // 元の投稿があるかどうかをチェック
+        let originalPost = null;
+        if (data.repostOf) {
+          const originalSnap = await getDoc(doc(db, "posts", data.repostOf));
+          if (originalSnap.exists()) {
+            originalPost = originalSnap.data();
+          }
+        }
+      
+        const userSnap = await getDoc(doc(db, "users", data.userId));
         const userData = userSnap.exists() ? userSnap.data() : {};
+      
         return {
           id: docSnap.id,
           ...data,
+          commentCount,
+          repostOriginal: originalPost, // ← 追加
           user: {
             displayName: userData.displayName || "匿名",
             userName: userData.userName || "unknown",
@@ -163,7 +209,9 @@ setUserPoint(profileData.point || 0); // ←ここを追加
           }
         };
       }));
+      
       setUserPosts(postData);
+      await Promise.all(postData.map(post => refreshReactions(post.id)));
 
       // 🔽 自分のコメント付き投稿の詳細も取得する
 const userCommentsSnap = await getDocs(query(collection(db, "comments"), where("userId", "==", uid)));
@@ -351,34 +399,7 @@ console.log("バッジ一覧", allBadgesSnap.docs.map(doc => doc.data()));
       console.error("リポスト切り替え失敗:", err);
     }
   };
-  
-  const refreshReactions = async (postId) => {
-    const [reactionSnap, commentSnap] = await Promise.all([
-      getDocs(collection(db, "posts", postId, "reactions")),
-      getDocs(collection(db, "posts", postId, "comments")),
-    ]);
-  
-    const counts = {}, userReactions = {};
-    reactionSnap.forEach(docSnap => {
-      const data = docSnap.data();
-      const userId = docSnap.id;
-      for (const type in data) {
-        if (data[type]) {
-          counts[type] = (counts[type] || 0) + 1;
-          if (user && userId === user.uid) {
-            userReactions[type] = true;
-          }
-        }
-      }
-    });
-  
-    counts.comment = commentSnap.size;
-  
-    setReactionData(prev => ({
-      ...prev,
-      [postId]: { counts, userReactions }
-    }));
-  };
+
 
 
   return (
@@ -448,11 +469,23 @@ console.log("バッジ一覧", allBadgesSnap.docs.map(doc => doc.data()));
           <span className="post-user-info-meta">{formatTimeAgo(post.createdAt)}</span>
         </div>
 
-        <PostContent
-          post={post}
-          isExpanded={!!expandedPosts[post.id]}
-          onToggleExpand={() => toggleExpand(post.id)}
-        />
+        {post.repostOriginal ? (
+  <div className="original-post-card">
+    <p className="repost-label">🔁 リポストした投稿</p>
+    <PostContent
+      post={post.repostOriginal}
+      isExpanded={!!expandedPosts[post.id]}
+      onToggleExpand={() => toggleExpand(post.id)}
+    />
+  </div>
+) : (
+  <PostContent
+    post={post}
+    isExpanded={!!expandedPosts[post.id]}
+    onToggleExpand={() => toggleExpand(post.id)}
+  />
+)}
+
 
         <ReactionBar
           post={post}

@@ -45,7 +45,11 @@ const TopBar = ({ user, profile, unreadCount, scrollDirection }) => {
     </span>
   )}
 </div>
-  <FaComments className="top-bar-icon" title="チャット" />
+  <FaComments 
+  className="top-bar-icon" 
+  title="チャット" 
+      onClick={() => navigate("/messages")}
+      />
   <img
     src={profileImage}
     alt="プロフィール"
